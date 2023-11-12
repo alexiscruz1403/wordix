@@ -134,6 +134,8 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * Funcion que recibe una cadena de caracteres y verifica si todos ellos son letras del alfabeto
+ * @param String $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
