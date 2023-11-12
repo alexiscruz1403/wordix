@@ -68,6 +68,27 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
         echo "Intento: Adivino la palabra en ".$coleccionPartidas[$numeroPartida-1]["intentos"];
     }
 }
+
+function agregarPalabra($coleccionPalabras,$palabraNueva){
+    array_push($coleccionPalabras,$palabraNueva);
+}
+
+function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
+    $cantidadPartidas=count($coleccionPartidas);
+    $i=0;
+    $encontrado=false;
+    $indice=-1;
+    do{
+        if($coleccionPartidas[0]["puntaje"]!=0){
+            $encontrado=true;
+            $indice=$i;
+        }
+        else{
+            $i++;
+        }
+    }while($i<$cantidadPartidas && !$encontrado);
+    return $indice;
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -85,7 +106,7 @@ $coleccionPalabras=cargarColeccionPalabras();
 //imprimirResultado($partida);
 
 do{
-    $op = seleccionarOpciones();
+    $opcion = seleccionarOpciones();
     switch ($op) {
         case 1: 
             $partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -102,7 +123,10 @@ do{
         case 4:;break;
         case 5:;break;
         case 6:;break;
-        case 7: $pal=leerPalabra5Letras();break;
+        case 7:
+            $palabraNueva=leerPalabra5Letras();
+            $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabraNueva);
+            break;
     }
 } while ($opcion != 8);
 
