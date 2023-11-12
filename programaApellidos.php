@@ -91,17 +91,19 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
 }
 
 function nombreValido($nombre){
-    
+    $esLetra=ctype_alpha($nombre[0]);
+    return $esLetra;
 }
 
 function solicitarJugador(){
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
     while(!nombreValido($nombre)){
-        echo "Su nombre debe empezar con una letra";
+        echo "Su nombre debe empezar con una letra\n";
         echo "Ingrese su nombre: ";
         $nombre=trim(fgets(STDIN));
     }
+    $nombre=strtolower($nombre);
     return $nombre;
 }
 /**************************************/
