@@ -44,14 +44,13 @@ function cargarColeccionPalabras()
 
 
 //Inicialización de variables:
-
+$coleccionPalabras=cargarColeccionPalabras();
 
 //Proceso:
 
 $partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-echo "hola";
 
 
 /*
