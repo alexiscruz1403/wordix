@@ -50,7 +50,7 @@ function cargarColeccionPalabras()
 $partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-
+echo "hola";
 
 
 /*
