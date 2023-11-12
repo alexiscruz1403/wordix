@@ -148,8 +148,8 @@ function esPalabra($cadena)
     return $esLetra;
 }
 
-/**
- *  ****COMPLETAR*****
+/** funcion que determina si es valida una palabra ingresada por el usuario
+ *  @return String
  */
 function leerPalabra5Letras()
 {
