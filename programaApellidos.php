@@ -61,6 +61,12 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
     echo "Puntaje: "$coleccionPartidas[$numeroPartida-1]["puntaje"];
+    if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
+        echo "Intento: No adivino la palabra";
+    }
+    else{
+        echo "Intento: Adivino la palabra en ".$coleccionPartidas[$numeroPartida-1]["intentos"];
+    }
 }
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
