@@ -1,7 +1,7 @@
 <?php
 include_once("wordix.php");
 
-
+//aaaa
 
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
