@@ -89,6 +89,21 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     }while($i<$cantidadPartidas && !$encontrado);
     return $indice;
 }
+
+function nombreValido($nombre){
+    
+}
+
+function solicitarJugador(){
+    echo "Ingrese su nombre: ";
+    $nombre=trim(fgets(STDIN));
+    while(!nombreValido($nombre)){
+        echo "Su nombre debe empezar con una letra";
+        echo "Ingrese su nombre: ";
+        $nombre=trim(fgets(STDIN));
+    }
+    return $nombre;
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
