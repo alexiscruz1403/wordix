@@ -48,7 +48,7 @@ function seleccionarOpcion(){
     echo "5. Mostrar resumern de jugador\n";
     echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
     echo "7. Agregar una palabra de 5 letras a wordix\n";
-    echo "5. Salir\n";
+    echo "8. Salir\n";
     do{
         echo "Opcion: ";
         $opcion=trim(fgets(STDIN));
