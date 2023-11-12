@@ -14,6 +14,11 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+
+function informacionPartidaJugada(){
+
+}
+
 /**
  * Obtiene una colección de palabras
  * @return array
@@ -60,7 +65,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Partida WORDIX 13\n";
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
-    echo "Puntaje: "$coleccionPartidas[$numeroPartida-1]["puntaje"];
+    echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"];
     if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
         echo "Intento: No adivino la palabra";
     }
@@ -115,7 +120,7 @@ function solicitarJugador(){
 
 //Inicialización de variables:
 $coleccionPalabras=cargarColeccionPalabras();
-
+$coleccionPartidas=[];
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
