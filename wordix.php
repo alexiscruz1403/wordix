@@ -27,7 +27,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ * Funcion que recibe dos numeros como parametros y solicita al usuario que ingrese un numero entre ellos
+ * Tambien verifica que el numero ingresado cumpla con esas condiciones
+ * @param int $min,$max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -120,7 +123,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Funcion que escribe un mensaje de bienvenida al usuario
+ * @param String $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
