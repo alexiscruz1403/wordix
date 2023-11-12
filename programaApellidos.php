@@ -1,13 +1,14 @@
 <?php
 include_once("wordix.php");
 
-//aaaa
+
 
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
+/*Montesino Lautaro FAI-3318 TUDW lautaro.montesino@est.fi.uncoma.edu.ar*/
 /* ****COMPLETAR***** */
 
 
