@@ -1,7 +1,7 @@
 <?php
 include_once("wordix.php");
 
-
+allalal
 echo "Hola"
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
