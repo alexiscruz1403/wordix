@@ -133,7 +133,7 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Funcion que recibe una cadena de caracteres y verifica si todos ellos son letras del alfabeto
  */
 function esPalabra($cadena)
 {
