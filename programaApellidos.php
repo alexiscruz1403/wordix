@@ -115,7 +115,7 @@ function solicitarJugador(){
 
 //Inicialización de variables:
 $coleccionPalabras=cargarColeccionPalabras();
-
+$coleccionPartidas=[];
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
