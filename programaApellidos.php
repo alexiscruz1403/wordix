@@ -1,8 +1,6 @@
 <?php
 include_once("wordix.php");
 
-allalal
-echo "Hola"
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
@@ -34,6 +32,12 @@ function cargarColeccionPalabras()
 
 /* ****COMPLETAR***** */
 
+/**
+*
+*/
+function cargarPartidas(){
+    //cargo partidas manualmente o cada vez que se jurga una partida este mismo es guardado como ejemplo?
+}
 
 
 /**************************************/
