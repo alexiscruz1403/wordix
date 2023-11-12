@@ -56,6 +56,12 @@ function seleccionarOpcion(){
     return $opcion;
 }
 
+function mostrarPartida($coleccionPartidas,$numeroPartida){
+    echo "Partida WORDIX 13\n";
+    echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
+    echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
+    echo "Puntaje: "$coleccionPartidas[$numeroPartida-1]["puntaje"];
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
