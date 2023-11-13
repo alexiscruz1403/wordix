@@ -51,7 +51,7 @@ function seleccionarOpcion(){
     echo "8. Salir\n";
     do{
         echo "Opcion: ";
-        $opcion=trim(fgets(STDIN));
+        $opcion=solicitarNumeroEntre(1,8);
     }while($opcion<1 || $opcion>8);
     return $opcion;
 }
@@ -60,7 +60,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Partida WORDIX ".$numeroPartida."\n";
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
-    //echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"];
+    echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"];
     if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
         echo "Intento: No adivino la palabra";
     }
