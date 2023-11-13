@@ -63,15 +63,12 @@ function seleccionarOpcion(){
     echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
     echo "7. Agregar una palabra de 5 letras a wordix\n";
     echo "8. Salir\n";
-    do{
-        echo "Opcion: ";
-        $opcion=trim(fgets(STDIN));
-    }while($opcion<1 || $opcion>8);
+    $opcion=solicitarNumeroEntre(1,8);
     return $opcion;
 }
 
 function mostrarPartida($coleccionPartidas,$numeroPartida){
-    echo "Partida WORDIX 13\n";
+    echo "Partida WORDIX ".$numeroPartida."\n";
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
     echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"];
@@ -85,6 +82,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
 
 function agregarPalabra($coleccionPalabras,$palabraNueva){
     array_push($coleccionPalabras,$palabraNueva);
+    return $coleccionPalabras;
 }
 
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
@@ -93,7 +91,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $encontrado=false;
     $indice=-1;
     do{
-        if($coleccionPartidas[0]["puntaje"]!=0){
+        if($coleccionPartidas[$i]["puntaje"]!=0 && $coleccionPartidas[$i]["nombre"]==$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
@@ -120,6 +118,66 @@ function solicitarJugador(){
     $nombre=strtolower($nombre);
     return $nombre;
 }
+
+function retornaResumen($coleccionPartidas,$nombreJugador){
+    // int contadorIntento1,contadorIntento2,contadorIntento3,contadorIntento4,contadorIntento5,contadorIntento6
+    // int contadorPartidas
+    // int contadorVictorias
+    // int acumuladorPuntaje
+    // int cantidadPartidas
+    // array asociativo resumen
+    $resumen=[];
+    $contadorIntento1=0;
+    $contadorIntento2=0;
+    $contadorIntento3=0;
+    $contadorIntento4=0;
+    $contadorIntento5=0;
+    $contadorIntento6=0;
+    $contadorPartidas=0;
+    $contadorVictorias=0;
+    $acumuladorPuntaje=0;
+    $cantidadPartidas=count($coleccionPartidas);
+    for($i=0;$i<$cantidadPartidas;$i++){
+        if($nombreJugador==$coleccionPartidas[$i]["jugador"]){
+            $contadorPartidas++;
+            if($coleccionPartidas[$i]["puntaje"]!=0){
+                $contadorVictorias++;
+                $acumuladorPuntaje=$acumuladorPuntaje+$coleccionPartidas[$i]["puntaje"];
+                switch($coleccionPartidas[$i]["intentos"]){
+                    case 1:
+                        $contadorIntento1++;
+                        break;
+                    case 2:
+                        $contadorIntento2++;
+                        break;
+                    case 3:
+                        $contadorIntento3++;
+                        break;
+                    case 4:
+                        $contadorIntento4++;
+                        break;
+                    case 5:
+                        $contadorIntento5++;
+                        break;
+                    case 6:
+                        $contadorIntento6++;
+                        break;
+                }
+            }
+        }
+    }
+    $resumen["jugador"]=$nombreJugador;
+    $resumen["partidas"]=$cantidadPartidas;
+    $resumen["puntaje"]=$nombreJugador;
+    $resumen["victorias"]=$nombreJugador;
+    $resumen["intento1"]=$nombreJugador;
+    $resumen["intento2"]=$nombreJugador;
+    $resumen["intento3"]=$nombreJugador;
+    $resumen["intento4"]=$nombreJugador;
+    $resumen["intento5"]=$nombreJugador;
+    $resumen["intento6"]=$nombreJugador;
+    return $resumen;
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -137,7 +195,7 @@ $coleccionPartidas=[];
 
 
 do{
-    $op=seleccionarOpcion();
+    $opcion = seleccionarOpcion();
     switch ($op) {
         case 1: 
             $partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -161,3 +219,4 @@ do{
     }
 } while ($opcion != 8);
 
+?>
