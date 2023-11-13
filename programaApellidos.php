@@ -123,7 +123,7 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     $contadorVictorias=0;
     $acumuladorPuntaje=0;
     $cantidadPartidas=count($coleccionPartidas);
-    for($i=0;i<$cantidadPartidas;$i++){
+    for($i=0;$i<$cantidadPartidas;$i++){
         if($nombreJugador==$coleccionPartidas[$i]["jugador"]){
             $contadorPartidas++;
             if($coleccionPartidas[$i]["puntaje"]!=0){
