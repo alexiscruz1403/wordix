@@ -57,10 +57,10 @@ function seleccionarOpcion(){
 }
 
 function mostrarPartida($coleccionPartidas,$numeroPartida){
-    echo "Partida WORDIX 13\n";
+    echo "Partida WORDIX ".$numeroPartida."\n";
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"];
-    echo "Puntaje: "$coleccionPartidas[$numeroPartida-1]["puntaje"];
+    //echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"];
     if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
         echo "Intento: No adivino la palabra";
     }
@@ -71,6 +71,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
 
 function agregarPalabra($coleccionPalabras,$palabraNueva){
     array_push($coleccionPalabras,$palabraNueva);
+    return $coleccionPalabras;
 }
 
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
@@ -79,7 +80,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $encontrado=false;
     $indice=-1;
     do{
-        if($coleccionPartidas[0]["puntaje"]!=0){
+        if($coleccionPartidas[$i]["puntaje"]!=0 && $coleccionPartidas[$i]["nombre"]==$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
@@ -123,7 +124,7 @@ $coleccionPartidas=[];
 //imprimirResultado($partida);
 
 do{
-    $opcion = seleccionarOpciones();
+    $opcion = seleccionarOpcion();
     switch ($op) {
         case 1: 
             $partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -147,3 +148,4 @@ do{
     }
 } while ($opcion != 8);
 
+?>
