@@ -14,11 +14,6 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-
-function informacionPartidaJugada(){
-
-}
-
 /**
  * Obtiene una colección de palabras
  * @return array
@@ -37,14 +32,28 @@ function cargarColeccionPalabras()
 
 /* ****COMPLETAR***** */
 
-/**
-*
+/** funcion que devuelve la coleccion de partidas jugadas
+* @return array
 */
-function cargarPartidas(){
-    //cargo partidas manualmente o cada vez que se jurga una partida este mismo es guardado como ejemplo?
+function cargarPartidas($colecPartidas){ 
+    $colecPartidas[0]=["palabraWordix"=>"QUESO","jugador"=>"majo","intentos"=>0,"puntaje"=>0];
+    $colecPartidas[1]=["palabraWordix"=>"CASAS","jugador"=>"rudolf","intentos"=>3,"puntaje"=>14];
+    $colecPartidas[2]=["palabraWordix"=>"QUESO","jugador"=>"pink2000","intentos"=>6,"puntaje"=>10];
+    $colecPartidas[3]=["palabraWordix"=>"MELON","jugador"=>"pablo","intentos"=>2,"puntaje"=>4];
+    $colecPartidas[4]=["palabraWordix"=>"VERDE","jugador"=>"luis","intentos"=>1,"puntaje"=>3];
+    $colecPartidas[5]=["palabraWordix"=>"GATOS","jugador"=>"manuel","intentos"=>5,"puntaje"=>12];
+    $colecPartidas[6]=["palabraWordix"=>"RASGO","jugador"=>"lauti","intentos"=>2,"puntaje"=>2];
+    $colecPartidas[7]=["palabraWordix"=>"YUYOS","jugador"=>"alexis","intentos"=>5,"puntaje"=>20];
+    $colecPartidas[8]=["palabraWordix"=>"HUEVOS","jugador"=>"matias","intentos"=>3,"puntaje"=>17];
+    $colecPartidas[9]=["palabraWordix"=>"FUEGO","jugador"=>"martina","intentos"=>6,"puntaje"=>10];
+    return $colecPartidas;
 }
 
+/** funcion que muestra un menu de opciones y el usuario debe elegir una
+ * @return int
+ */
 function seleccionarOpcion(){
+    // int $opcion
     echo "Seleccione una opcion: \n";
     echo "1. Jugar Wordix con una palabra elegida\n";
     echo "2. Jugar Wordix con una palabra aleatoria\n";
@@ -123,12 +132,12 @@ $coleccionPalabras=cargarColeccionPalabras();
 $coleccionPartidas=[];
 //Proceso:
 
-//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
+
 do{
-    $opcion = seleccionarOpciones();
+    $op=seleccionarOpcion();
     switch ($op) {
         case 1: 
             $partida = jugarWordix("MELON", strtolower("MaJo"));
