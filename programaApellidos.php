@@ -100,10 +100,10 @@ function agregarPalabra($coleccionPalabras,$palabraNueva){
     return $coleccionPalabras;
 }
 
-/** explicacion 3 punto 8
- * @param
- * @param
- * @return
+/** Funcion que retorna el indice de la primer partida ganada de un jugador. Explicacion 3 punto 8
+ * @param array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return int 
  */
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $cantidadPartidas=count($coleccionPartidas);
@@ -187,6 +187,9 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     return $resumen;
 }
 
+/** Funcion que muestra el resumen de un jugador
+ * @param array $resumen
+ */
 function mostrarResumen($resumen){
     $cantidadPartidas=$resumen["partidas"];
     $cantidadVictorias=$resumen["victorias"];
@@ -229,6 +232,12 @@ function solicitarJugador(){
     return $nombre;
 }
 
+/** Funcion que verifica si un usuario ya jugo con una palabra dada
+ * @param array $coleccionPalabras
+ * @param string $palabra
+ * @param string $jugador
+ * @return boolean
+ */
 function yaJugo($coleccionPartidas,$palabra,$jugador){
     $cantidadPartidas=count($coleccionPartidas);
     $i=0;
@@ -242,6 +251,11 @@ function yaJugo($coleccionPartidas,$palabra,$jugador){
     return $palabraJugada;
 }
 
+/** Funcion que verifica si una palabra ingresada ya pertenece al arreglo de palabras
+ * @param array $coleccionPalabras
+ * @param string $nuevaPalabra
+ * @return boolean
+ */
 function pertenece($coleccionPalabras,$nuevaPalabra){
     $cantidadPalabras=count($coleccionPalabras);
     $i=0;
@@ -263,7 +277,9 @@ function pertenece($coleccionPalabras,$nuevaPalabra){
 //Declaración de variables:
 /*array $coleccionPalabras
   array $coleccionPartidas
+  array $resumen
   String $nombre
+  String palabraNueva
   int $numeroPalabra
   int $cantidadPalabras
   int $cantidadPartidas
@@ -287,7 +303,7 @@ do{
             $nombre=trim(fgets(STDIN));
             escribirMensajeBienvenida($nombre);
             echo "Ingrese el numero de la Palabra Wordix: ";
-            $numeroPalabra=solicitarNumeroEntre(0,$cantidadPalabras-1);
+            $numeroPalabra=solicitarNumeroEntre(0,$cantidadColeccionPalabras-1);
             $palabraWordix=$coleccionPalabras[$numeroPalabra];
             while(yaJugo($coleccionPartidas,$palabraWordix,$jugador)){
                 echo "Usted ya jugo con esta palabra, pruebe con otra: ";
@@ -302,7 +318,7 @@ do{
             $nombre=trim(fgets(STDIN));
             escribirMensajeBienvenida($nombre);
             do{
-                $numeroPalabra=mt_rand(0,$cantidadPalabras-1);
+                $numeroPalabra=mt_rand(0,$cantidadColeccionPalabras-1);
                 $palabraWordix=$coleccionPalabras[$numeroPalabra];
             }while(yaJugo($coleccionPalabras,$palabra,$nombre));
             $partida = jugarWordix($palabraWordix, strtolower($nombre));
