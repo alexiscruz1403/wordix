@@ -190,12 +190,13 @@ function nombreValido($nombre){
     return $esLetra;
 }
 
-/** punto 10
+/** funcion que verifica el nombre del jugador
  * @return String
  */
 function solicitarJugador(){
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
+    $esLetra=ctype_alpha($nombre[0]);
     while(!nombreValido($nombre)){
         echo "Su nombre debe empezar con una letra\n";
         echo "Ingrese su nombre: ";
