@@ -35,7 +35,8 @@ function cargarColeccionPalabras()
 /** funcion que devuelve la coleccion de partidas jugadas
 * @return array
 */
-function cargarPartidas($colecPartidas){ 
+function cargarPartidas(){ 
+    //array multidimensional $colecPartidas
     $colecPartidas[0]=["palabraWordix"=>"QUESO","jugador"=>"majo","intentos"=>0,"puntaje"=>0];
     $colecPartidas[1]=["palabraWordix"=>"CASAS","jugador"=>"rudolf","intentos"=>3,"puntaje"=>14];
     $colecPartidas[2]=["palabraWordix"=>"QUESO","jugador"=>"pink2000","intentos"=>6,"puntaje"=>10];
@@ -47,6 +48,11 @@ function cargarPartidas($colecPartidas){
     $colecPartidas[8]=["palabraWordix"=>"HUEVOS","jugador"=>"matias","intentos"=>3,"puntaje"=>17];
     $colecPartidas[9]=["palabraWordix"=>"FUEGO","jugador"=>"martina","intentos"=>6,"puntaje"=>10];
     return $colecPartidas;
+}
+
+function agregarPartida($coleccionPartidas,$partida){
+    array_push($coleccionPartidas,$partida);
+    return $coleccionPartidas;
 }
 
 /** funcion que muestra un menu de opciones y el usuario debe elegir una
@@ -181,6 +187,15 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     return $resumen;
 }
 
+/** este modulo no es necesario, ya que es muy corto para poder serlo
+ * @param String $nombre
+ * @return boolean
+ */
+function nombreValido($nombre){
+    $esLetra=ctype_alpha($nombre[0]);
+    return $esLetra;
+}
+
 /** funcion que verifica el nombre del jugador
  * @return String
  */
@@ -188,7 +203,7 @@ function solicitarJugador(){
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
     $esLetra=ctype_alpha($nombre[0]);
-    while(!$esLetra){
+    while(!nombreValido($nombre)){
         echo "Su nombre debe empezar con una letra\n";
         echo "Ingrese su nombre: ";
         $nombre=trim(fgets(STDIN));
@@ -197,6 +212,18 @@ function solicitarJugador(){
     return $nombre;
 }
 
+function yaJugo($coleccionPartidas,$palabra,$jugador){
+    $cantidadPartidas=count($coleccionPartidas);
+    $i=0;
+    $palabraJugada=false;
+    while($i<$cantidadPartidas && !$palabraJugada){
+        if($coleccionPartidas[$i]["jugador"]==$jugador && $coleccionPartidas[$i]["palabra-Wordix"]==$palabra){
+            $palabraJugada=true;
+        }
+        $i++;
+    }
+    return $palabraJugada;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -205,26 +232,35 @@ function solicitarJugador(){
 //Declaración de variables:
 /*array $coleccionPalabras
   array $coleccionPartidas
-  String $n
-
+  String $nombre
+  int $numeroPalabra
+  int $cantidadColeccionPalabras
 */
 
 //Inicialización de variables:
 $coleccionPalabras=cargarColeccionPalabras();
-$coleccionPartidas=[];
+$coleccionPartidas=cargarPartidas();
 //Proceso:
 
 //print_r($partida);
 //imprimirResultado($partida);
-
-
 do{
+    $cantidadColeccionPalabras=count($coleccionPalabras);
     $opcion = seleccionarOpcion();
-    switch ($op) {
+    switch ($opcion) {
         case 1:
-            echo "ingrese su nombre";
-            $n=trim(fgets(STDIN));
-            $partida = jugarWordix("MELON", strtolower("MaJo"));
+            echo "Ingrese su nombre";
+            $nombre=trim(fgets(STDIN));
+            echo "Ingrese el numero de la Palabra Wordix: ";
+            $numeroPalabra=solicitarNumeroEntre(0,$cantidadColeccionPalabras-1);
+            $palabraWordix=$coleccionPalabras[$numeroPalabra];
+            while(yaJugo($coleccionPartidas,$palabraWordix,$jugador)){
+                echo "Usted ya jugo con esta palabra, pruebe con otra: ";
+                $numeroPalabra=solicitarNumeroEntre(0,$cantidadColeccionPalabras-1);
+                $palabraWordix=$coleccionPalabras[$numeroPalabra];
+            }
+            $partida = jugarWordix($palabraWordix, strtolower($nombre));
+            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 2: 
             echo "ingrese su nombre";
