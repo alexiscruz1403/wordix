@@ -100,10 +100,10 @@ function agregarPalabra($coleccionPalabras,$palabraNueva){
     return $coleccionPalabras;
 }
 
-/** explicacion 3 punto 8
- * @param
- * @param
- * @return
+/** funcion que retorna la primer victoria del jugador
+ * @param array $coleccionPartidas
+ * @param String $nombreJugador
+ * @return int
  */
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $cantidadPartidas=count($coleccionPartidas);
@@ -122,7 +122,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     return $indice;
 }
 
-/** funcion que devuelve el resumen de un jugador de una partidas punto 9
+/** funcion que devuelve el resumen de un jugador de una partidas
  * @param array $coleccionPartidas
  * @param String $nombre
  * @return array
