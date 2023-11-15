@@ -302,7 +302,7 @@ do{
             echo "Ingrese su nombre";
             $nombre=trim(fgets(STDIN));
             echo "Ingrese el numero de la Palabra Wordix: ";
-            $numeroPalabra=solicitarNumeroEntre(0,$cantidadColeccionPalabras-1);
+            $numeroPalabra=solicitarNumeroEntre(0,$cantidadPalabras-1);
             $palabraWordix=$coleccionPalabras[$numeroPalabra];
             while(yaJugo($coleccionPartidas,$palabraWordix,$nombre)){
                 echo "Usted ya jugo con esta palabra, pruebe con otra: ";
