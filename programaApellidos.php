@@ -212,6 +212,12 @@ function solicitarJugador(){
     return $nombre;
 }
 
+/** funcion que verifica si un jugador ya jugo una palabra en esa partida
+ * @param array $coleccionPartidas
+ * @param String $palabra
+ * @param String $jugador
+ * @return boolean 
+ */
 function yaJugo($coleccionPartidas,$palabra,$jugador){
     $cantidadPartidas=count($coleccionPartidas);
     $i=0;
