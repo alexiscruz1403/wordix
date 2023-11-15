@@ -67,6 +67,10 @@ function seleccionarOpcion(){
     return $opcion;
 }
 
+/** explicacion 3 punto 6
+ * @param
+ * @param
+ */
 function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Partida WORDIX ".$numeroPartida."\n";
     echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"];
@@ -80,11 +84,21 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
     }
 }
 
+/** funcion que agrega una nueva palabra a la coleccion de palabras a adivinar punto7
+ * @param  array $coleccionPalabras
+ * @param String $palabraNueva
+ * @return array
+ */
 function agregarPalabra($coleccionPalabras,$palabraNueva){
     array_push($coleccionPalabras,$palabraNueva);
     return $coleccionPalabras;
 }
 
+/** explicacion 3 punto 8
+ * @param
+ * @param
+ * @return
+ */
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $cantidadPartidas=count($coleccionPartidas);
     $i=0;
@@ -102,23 +116,11 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     return $indice;
 }
 
-function nombreValido($nombre){
-    $esLetra=ctype_alpha($nombre[0]);
-    return $esLetra;
-}
-
-function solicitarJugador(){
-    echo "Ingrese su nombre: ";
-    $nombre=trim(fgets(STDIN));
-    while(!nombreValido($nombre)){
-        echo "Su nombre debe empezar con una letra\n";
-        echo "Ingrese su nombre: ";
-        $nombre=trim(fgets(STDIN));
-    }
-    $nombre=strtolower($nombre);
-    return $nombre;
-}
-
+/** funcion que devuelve el resumen de un jugador de una partidas punto 9
+ * @param array $coleccionPartidas
+ * @param String $nombre
+ * @return array
+ */
 function retornaResumen($coleccionPartidas,$nombreJugador){
     // int contadorIntento1,contadorIntento2,contadorIntento3,contadorIntento4,contadorIntento5,contadorIntento6
     // int contadorPartidas
@@ -178,6 +180,32 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     $resumen["intento6"]=$nombreJugador;
     return $resumen;
 }
+
+/** este modulo no es necesario, ya que es muy corto para poder serlo
+ * @param String $nombre
+ * @return boolean
+ */
+function nombreValido($nombre){
+    $esLetra=ctype_alpha($nombre[0]);
+    return $esLetra;
+}
+
+/** punto 10
+ * @return String
+ */
+function solicitarJugador(){
+    echo "Ingrese su nombre: ";
+    $nombre=trim(fgets(STDIN));
+    while(!nombreValido($nombre)){
+        echo "Su nombre debe empezar con una letra\n";
+        echo "Ingrese su nombre: ";
+        $nombre=trim(fgets(STDIN));
+    }
+    $nombre=strtolower($nombre);
+    return $nombre;
+}
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
