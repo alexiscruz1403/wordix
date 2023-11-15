@@ -69,6 +69,7 @@ function seleccionarOpcion(){
     echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
     echo "7. Agregar una palabra de 5 letras a wordix\n";
     echo "8. Salir\n";
+    echo "Opcion: ";
     $opcion=solicitarNumeroEntre(1,8);
     return $opcion;
 }
@@ -299,7 +300,7 @@ do{
     $opcion = seleccionarOpcion();
     switch ($opcion) {
         case 1:
-            echo "Ingrese su nombre";
+            echo "Ingrese su nombre: ";
             $nombre=trim(fgets(STDIN));
             echo "Ingrese el numero de la Palabra Wordix: ";
             $numeroPalabra=solicitarNumeroEntre(0,$cantidadPalabras-1);
@@ -313,10 +314,10 @@ do{
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 2: 
-            echo "Ingrese su nombre";
+            echo "Ingrese su nombre: ";
             $nombre=trim(fgets(STDIN));
             do{
-                $numeroPalabra=mt_rand(0,$cantidadColeccionPalabras-1);
+                $numeroPalabra=mt_rand(0,$cantidadPalabras-1);
                 $palabraWordix=$coleccionPalabras[$numeroPalabra];
             }while(yaJugo($coleccionPalabras,$palabra,$nombre));
             $partida = jugarWordix($palabraWordix, strtolower($nombre));
