@@ -237,6 +237,8 @@ function yaJugo($coleccionPartidas,$palabra,$jugador){
   int $cantidadPalabras
   int $cantidadPartidas
   int $numeroPartida
+  String $jugadorNombre
+  int $victoria
 */
 
 //Inicialización de variables:
@@ -282,7 +284,12 @@ do{
             $numeroPartida=solicitarNumeroEntre(0,$cantidadPartidas-1);
             mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
-        case 4:;break;
+        case 4:
+            echo "Ingrese el nombre del jugador";
+            $jugadorNombre=trim(fgets(STDIN));
+            $victoria=retornaPrimerVictoria($coleccionPartidas,$jugadorNombre);
+            mostrarPartida($coleccionPartidas,$victoria);
+            break;
         case 5:;break;
         case 6:;break;
         case 7:
