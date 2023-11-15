@@ -269,9 +269,14 @@ do{
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 2: 
-            echo "ingrese su nombre";
-            $n=trim(fgets(STDIN));
-            $partida = jugarWordix("MELON", strtolower("MaJo"));
+            echo "Ingrese su nombre";
+            $nombre=trim(fgets(STDIN));
+            do{
+                $numeroPalabra=mt_rand(0,$cantidadColeccionPalabras-1);
+                $palabraWordix=$coleccionPalabras[$numeroPalabra];
+            }while(yaJugo($coleccionPalabras,$palabra,$nombre));
+            $partida = jugarWordix($palabraWordix, strtolower($nombre));
+            $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 3:
             echo "ingrese el nombre de un jugador";
