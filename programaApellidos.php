@@ -67,9 +67,9 @@ function seleccionarOpcion(){
     return $opcion;
 }
 
-/** explicacion 3 punto 6
- * @param
- * @param
+/** funcion que muestra los datos de una partida solicitada explicacion 3 punto 6
+ * @param array $coleccionPartidas
+ * @param int $numeroPartida
  */
 function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Partida WORDIX ".$numeroPartida."\n";
@@ -211,7 +211,11 @@ function solicitarJugador(){
 /**************************************/
 
 //Declaración de variables:
+/*array $coleccionPalabras
+  array $coleccionPartidas
+  String $n
 
+*/
 
 //Inicialización de variables:
 $coleccionPalabras=cargarColeccionPalabras();
@@ -225,17 +229,20 @@ $coleccionPartidas=[];
 do{
     $opcion = seleccionarOpcion();
     switch ($op) {
-        case 1: 
+        case 1:
+            echo "ingrese su nombre";
+            $n=trim(fgets(STDIN));
             $partida = jugarWordix("MELON", strtolower("MaJo"));
-
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            echo "ingrese su nombre";
+            $n=trim(fgets(STDIN));
             $partida = jugarWordix("MELON", strtolower("MaJo"));
             break;
-        case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+        case 3:
+            echo "ingrese el nombre de un jugador";
+            $nomJugador=trim(fgets(STDIN));
+            mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
         case 4:;break;
         case 5:;break;
