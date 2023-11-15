@@ -80,14 +80,14 @@ function seleccionarOpcion(){
  */
 function mostrarPartida($coleccionPartidas,$numeroPartida){
     echo "Partida WORDIX ".$numeroPartida."\n";
-    echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabra-Wordix"]."\n";
+    echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabraWordix"]."\n";
     echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"]."\n";
     echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"]."\n";
     if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
-        echo "Intento: No adivino la palabra";
+        echo "Intento: No adivino la palabra \n";
     }
     else{
-        echo "Intento: Adivino la palabra en ".$coleccionPartidas[$numeroPartida-1]["intentos"];
+        echo "Intento: Adivino la palabra en ".$coleccionPartidas[$numeroPartida-1]["intentos"]."\n";
     }
 }
 
@@ -244,7 +244,7 @@ function yaJugo($coleccionPartidas,$palabra,$jugador){
     $i=0;
     $palabraJugada=false;
     while($i<$cantidadPartidas && !$palabraJugada){
-        if($coleccionPartidas[$i]["jugador"]==$jugador && $coleccionPartidas[$i]["palabra-Wordix"]==$palabra){
+        if($coleccionPartidas[$i]["jugador"]==$jugador && $coleccionPartidas[$i]["palabraWordix"]==$palabra){
             $palabraJugada=true;
         }
         $i++;
@@ -317,15 +317,15 @@ do{
             echo "Ingrese su nombre: ";
             $nombre=trim(fgets(STDIN));
             do{
-                $numeroPalabra=mt_rand(0,$cantidadPalabras-1);
+                $numeroPalabra=rand(0,$cantidadPalabras-1);
                 $palabraWordix=$coleccionPalabras[$numeroPalabra];
-            }while(yaJugo($coleccionPalabras,$palabra,$nombre));
+            }while(yaJugo($coleccionPalabras,$palabraWordix,$nombre));
             $partida = jugarWordix($palabraWordix, strtolower($nombre));
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 3:
-            echo "Ingrese un numero de partida entre 0 y ".($cantidadPartidas-1).": ";
-            $numeroPartida=solicitarNumeroEntre(0,$cantidadPartidas-1);
+            echo "Ingrese un numero de partida entre 1 y ".($cantidadPartidas).": ";
+            $numeroPartida=solicitarNumeroEntre(1,$cantidadPartidas);
             mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
         case 4:;break;
