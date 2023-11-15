@@ -100,10 +100,10 @@ function agregarPalabra($coleccionPalabras,$palabraNueva){
     return $coleccionPalabras;
 }
 
-/** funcion que retorna la primer victoria del jugador
- * @param array $coleccionPartidas
- * @param String $nombreJugador
- * @return int
+/** explicacion 3 punto 8
+ * @param
+ * @param
+ * @return
  */
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $cantidadPartidas=count($coleccionPartidas);
@@ -122,7 +122,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     return $indice;
 }
 
-/** funcion que devuelve el resumen de un jugador de una partidas
+/** funcion que devuelve el resumen de un jugador de una partidas punto 9
  * @param array $coleccionPartidas
  * @param String $nombre
  * @return array
@@ -187,6 +187,23 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     return $resumen;
 }
 
+function mostrarResumen($resumen){
+    $cantidadPartidas=$resumen["partidas"];
+    $cantidadVictorias=$resumen["victorias"];
+    $porcentajeVictorias=($cantidadVictorias*100)/$cantidadPartidas;
+    echo "Jugador: ".$resumen["jugador"];
+    echo "Partidas: ".$resumen["partidas"];
+    echo "Puntaje total: ".$resumen["puntaje"];
+    echo "Victorias: ".$resumen["victorias"];
+    echo "Porcentaje victorias: ".$porcentajeVictorias;
+    echo "Intento 1: ".$resumen["intentos1"];
+    echo "Intento 2: ".$resumen["intentos2"];
+    echo "Intento 3: ".$resumen["intentos3"];
+    echo "Intento 4: ".$resumen["intentos4"];
+    echo "Intento 5: ".$resumen["intentos5"];
+    echo "Intento 6: ".$resumen["intentos6"];
+}
+
 /** este modulo no es necesario, ya que es muy corto para poder serlo
  * @param String $nombre
  * @return boolean
@@ -237,8 +254,6 @@ function yaJugo($coleccionPartidas,$palabra,$jugador){
   int $cantidadPalabras
   int $cantidadPartidas
   int $numeroPartida
-  String $jugadorNombre
-  int $victoria
 */
 
 //Inicialización de variables:
@@ -284,13 +299,13 @@ do{
             $numeroPartida=solicitarNumeroEntre(0,$cantidadPartidas-1);
             mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
-        case 4:
-            echo "Ingrese el nombre del jugador";
-            $jugadorNombre=trim(fgets(STDIN));
-            $victoria=retornaPrimerVictoria($coleccionPartidas,$jugadorNombre);
-            mostrarPartida($coleccionPartidas,$victoria);
-            break;
-        case 5:;break;
+        case 4:;break;
+        case 5:
+            echo "Ingrese el nombre del jugador: ";
+            $nombre=trim(fgets(STDIN));
+            $resumen=retornaResumen($coleccionPartidas,$nombre);
+            mostrarResumen($resumen);
+            ;break;
         case 6:;break;
         case 7:
             $palabraNueva=leerPalabra5Letras();
