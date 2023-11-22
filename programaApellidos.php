@@ -126,7 +126,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
         else{
             $i++;
         }
-    }while($i<$cantidadPartidas && !$encontrado);
+    }while($i<$cantidadPartidas & !$encontrado);
     return $indice;
 }
 
