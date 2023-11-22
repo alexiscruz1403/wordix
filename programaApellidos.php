@@ -79,7 +79,7 @@ function seleccionarOpcion(){
     return $opcion;
 }
 
-/** funcion que muestra los datos de una partida solicitada explicacion 3 punto 6
+/**funcion que muestra los datos de una partida solicitada
  * @param array $coleccionPartidas
  * @param int $numeroPartida
  */
@@ -92,7 +92,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
         echo "Intento: No adivino la palabra \n";
     }
     else{
-        echo "Intento: Adivino la palabra en ".$coleccionPartidas[$numeroPartida-1]["intentos"]."\n";
+        echo "Intento: Adivino la palabra en el ".$coleccionPartidas[$numeroPartida-1]["intentos"]."° "."\n";
     }
 }
 
@@ -112,12 +112,14 @@ function agregarPalabra($coleccionPalabras,$palabraNueva){
  * @return int 
  */
 function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
+    /* int $cantidadPartidas,$i,$indice
+       boolean $encontrado*/
     $cantidadPartidas=count($coleccionPartidas);
     $i=0;
     $encontrado=false;
     $indice=-1;
     do{
-        if($coleccionPartidas[$i]["puntaje"]!=0 && $coleccionPartidas[$i]["nombre"]==$nombreJugador){
+        if($coleccionPartidas[$i]["puntaje"]!=0 & $coleccionPartidas[$i]["nombre"]==$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
@@ -324,11 +326,21 @@ do{
             $numeroPartida=solicitarNumeroEntre(1,$cantidadPartidas);
             mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
-        case 4:;break;
+        case 4:
+            echo "ingrese el nombre de un jugador";
+            $nnJugador=trim(fgets(STDIN));
+            $pos=retornaPrimerVictoria($coleccionPartidas,$nnJugador);
+            if($pos=-1){
+                echo "el jugador ".$nnJugador." no gano ninguna partida";
+            }
+            else{
+                mostrarPartida($coleccionPartidas,$pos);
+            }
+            ;break;
         case 5:
             echo "Ingrese el nombre del jugador: ";
-            $nombre=trim(fgets(STDIN));
-            $resumen=retornaResumen($coleccionPartidas,$nombre);
+            $nnJugador=trim(fgets(STDIN));
+            $resumen=retornaResumen($coleccionPartidas,$nnJugador);
             mostrarResumen($resumen);
             ;break;
         case 6:;break;
