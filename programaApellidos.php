@@ -119,7 +119,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $encontrado=false;
     $indice=-1;
     do{
-        if($coleccionPartidas[$i]["puntaje"]!=0 & $coleccionPartidas[$i]["nombre"]==$nombreJugador){
+        if($coleccionPartidas[$i]["puntaje"]!=0 & $coleccionPartidas[$i]["jugador"]==$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
@@ -219,6 +219,9 @@ function mostrarResumen($resumen){
  * @return String
  */
 function solicitarJugador(){
+    /* String $nombre
+       boolean $esLetra
+    */
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
     $esLetra=ctype_alpha($nombre[0]);
@@ -226,6 +229,7 @@ function solicitarJugador(){
         echo "Su nombre debe empezar con una letra\n";
         echo "Ingrese su nombre: ";
         $nombre=trim(fgets(STDIN));
+        $esLetra=ctype_alpha($nombre[0]);
     }
     $nombre=strtolower($nombre);
     return $nombre;
@@ -238,6 +242,9 @@ function solicitarJugador(){
  * @return boolean
  */
 function yaJugo($coleccionPartidas,$palabra,$jugador){
+    /*int $cantidadPartidas,$i
+      boolean $palabraJugada
+     */
     $cantidadPartidas=count($coleccionPartidas);
     $i=0;
     $palabraJugada=false;
@@ -256,6 +263,7 @@ function yaJugo($coleccionPartidas,$palabra,$jugador){
  * @return boolean
  */
 function pertenece($coleccionPalabras,$nuevaPalabra){
+    /* int $cantidadPalabras,$i*/
     $cantidadPalabras=count($coleccionPalabras);
     $i=0;
     while($i<$cantidadPalabras && $coleccionPalabras[$i]!=$nuevaPalabra){
@@ -298,8 +306,7 @@ do{
     $opcion = seleccionarOpcion();
     switch ($opcion) {
         case 1:
-            echo "Ingrese su nombre: ";
-            $nombre=trim(fgets(STDIN));
+            $nombre=solicitarJugador();
             echo "Ingrese el numero de la Palabra Wordix: ";
             $numeroPalabra=solicitarNumeroEntre(0,$cantidadPalabras-1);
             $palabraWordix=$coleccionPalabras[$numeroPalabra];
@@ -312,12 +319,11 @@ do{
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
         case 2: 
-            echo "Ingrese su nombre: ";
-            $nombre=trim(fgets(STDIN));
+            $nombre=solicitarJugador();
             do{
                 $numeroPalabra=rand(0,$cantidadPalabras-1);
                 $palabraWordix=$coleccionPalabras[$numeroPalabra];
-            }while(yaJugo($coleccionPalabras,$palabraWordix,$nombre));
+            }while(yaJugo($coleccionPartidas,$palabraWordix,$nombre));
             $partida = jugarWordix($palabraWordix, strtolower($nombre));
             $coleccionPartidas=agregarPartida($coleccionPartidas,$partida);
             break;
