@@ -6,7 +6,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/*Montesino Lautaro FAI-3318 TUDW lautaro.montesino@est.fi.uncoma.edu.ar*/
+/*Montesino Lautaro FAI-3318 TUDW lautaro.montesino@est.fi.uncoma.edu.ar lautyMonte*/
 /* ****COMPLETAR***** */
 
 
@@ -50,6 +50,11 @@ function cargarPartidas(){
     return $colecPartidas;
 }
 
+/**  funcion que cargar la partida de un jugador en la coleccion de partidas
+ * @param array $coleccionPartidas
+ * @param array $partida
+ * @return array
+ */
 function agregarPartida($coleccionPartidas,$partida){
     array_push($coleccionPartidas,$partida);
     return $coleccionPartidas;
@@ -91,7 +96,7 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
     }
 }
 
-/** funcion que agrega una nueva palabra a la coleccion de palabras a adivinar punto7
+/** funcion que agrega una nueva palabra a la coleccion de palabras a adivinar
  * @param  array $coleccionPalabras
  * @param String $palabraNueva
  * @return array
@@ -101,7 +106,7 @@ function agregarPalabra($coleccionPalabras,$palabraNueva){
     return $coleccionPalabras;
 }
 
-/** Funcion que retorna el indice de la primer partida ganada de un jugador. Explicacion 3 punto 8
+/** Funcion que retorna el indice de la primer partida ganada de un jugador.
  * @param array $coleccionPartidas
  * @param string $nombreJugador
  * @return int 
@@ -123,7 +128,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     return $indice;
 }
 
-/** funcion que devuelve el resumen de un jugador de una partidas punto 9
+/** funcion que devuelve el resumen de un jugador de una partidas
  * @param array $coleccionPartidas
  * @param String $nombre
  * @return array
@@ -176,15 +181,15 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
         }
     }
     $resumen["jugador"]=$nombreJugador;
-    $resumen["partidas"]=$cantidadPartidas;
-    $resumen["puntaje"]=$nombreJugador;
-    $resumen["victorias"]=$nombreJugador;
-    $resumen["intento1"]=$nombreJugador;
-    $resumen["intento2"]=$nombreJugador;
-    $resumen["intento3"]=$nombreJugador;
-    $resumen["intento4"]=$nombreJugador;
-    $resumen["intento5"]=$nombreJugador;
-    $resumen["intento6"]=$nombreJugador;
+    $resumen["partidas"]=$contadorPartidas;
+    $resumen["puntaje"]=$acumuladorPuntaje;
+    $resumen["victorias"]=$contadorVictorias;
+    $resumen["intento1"]=$contadorIntento1;
+    $resumen["intento2"]=$contadorIntento2;
+    $resumen["intento3"]=$contadorIntento3;
+    $resumen["intento4"]=$contadorIntento4;
+    $resumen["intento5"]=$contadorIntento5;
+    $resumen["intento6"]=$contadorIntento6;
     return $resumen;
 }
 
@@ -208,15 +213,6 @@ function mostrarResumen($resumen){
     echo "Intento 6: ".$resumen["intentos6"];
 }
 
-/** este modulo no es necesario, ya que es muy corto para poder serlo
- * @param String $nombre
- * @return boolean
- */
-function nombreValido($nombre){
-    $esLetra=ctype_alpha($nombre[0]);
-    return $esLetra;
-}
-
 /** funcion que verifica el nombre del jugador
  * @return String
  */
@@ -224,7 +220,7 @@ function solicitarJugador(){
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
     $esLetra=ctype_alpha($nombre[0]);
-    while(!nombreValido($nombre)){
+    while(!$esLetra){
         echo "Su nombre debe empezar con una letra\n";
         echo "Ingrese su nombre: ";
         $nombre=trim(fgets(STDIN));
