@@ -84,16 +84,18 @@ function seleccionarOpcion(){
  * @param int $numeroPartida
  */
 function mostrarPartida($coleccionPartidas,$numeroPartida){
-    echo "Partida WORDIX ".$numeroPartida."\n";
-    echo "Palabra: ".$coleccionPartidas[$numeroPartida-1]["palabraWordix"]."\n";
-    echo "Jugador: ".$coleccionPartidas[$numeroPartida-1]["jugador"]."\n";
-    echo "Puntaje: ".$coleccionPartidas[$numeroPartida-1]["puntaje"]."\n";
-    if($coleccionPartidas[$numeroPartida-1]["puntaje"]==0){
+    echo "**********************************\n";
+    echo "Partida WORDIX ".($numeroPartida+1)."\n";
+    echo "Palabra: ".$coleccionPartidas[$numeroPartida]["palabraWordix"]."\n";
+    echo "Jugador: ".$coleccionPartidas[$numeroPartida]["jugador"]."\n";
+    echo "Puntaje: ".$coleccionPartidas[$numeroPartida]["puntaje"]."\n";
+    if($coleccionPartidas[$numeroPartida]["puntaje"]==0){
         echo "Intento: No adivino la palabra \n";
     }
     else{
-        echo "Intento: Adivino la palabra en el ".$coleccionPartidas[$numeroPartida-1]["intentos"]."° "."\n";
+        echo "Intento: Adivino la palabra en el ".$coleccionPartidas[$numeroPartida]["intentos"]."° "."\n";
     }
+    echo "**********************************\n";
 }
 
 /** funcion que agrega una nueva palabra a la coleccion de palabras a adivinar
@@ -123,9 +125,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
-        else{
-            $i++;
-        }
+        $i++;
     }while($i<$cantidadPartidas && !$encontrado);
     return $indice;
 }
@@ -360,14 +360,14 @@ do{
             break;
         case 3:
             echo "Ingrese un numero de partida entre 1 y ".($cantidadPartidas).": ";
-            $numeroPartida=solicitarNumeroEntre(1,$cantidadPartidas);
-            mostrarPartida($coleccionPartidas,$numeroPartida);
+            $numeroPartida=solicitarNumeroEntre(1,$cantidadPartidas); 
+            mostrarPartida($coleccionPartidas,$numeroPartida-1);
             break;
         case 4:
             echo "ingrese el nombre de un jugador \n";
             $nnJugador=trim(fgets(STDIN));
             $pos=retornaPrimerVictoria($coleccionPartidas,$nnJugador);
-            if($pos=-1){
+            if($pos==-1){
                 echo "el jugador ".$nnJugador." no gano ninguna partida\n";
             }
             else{
