@@ -119,14 +119,14 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
     $encontrado=false;
     $indice=-1;
     do{
-        if($coleccionPartidas[$i]["puntaje"]!=0 & $coleccionPartidas[$i]["jugador"]==$nombreJugador){
+        if($coleccionPartidas[$i]["puntaje"]>0 && $coleccionPartidas[$i]["jugador"]==$nombreJugador){
             $encontrado=true;
             $indice=$i;
         }
         else{
             $i++;
         }
-    }while($i<$cantidadPartidas & !$encontrado);
+    }while($i<$cantidadPartidas && !$encontrado);
     return $indice;
 }
 
@@ -333,28 +333,28 @@ do{
             mostrarPartida($coleccionPartidas,$numeroPartida);
             break;
         case 4:
-            echo "ingrese el nombre de un jugador";
+            echo "ingrese el nombre de un jugador \n";
             $nnJugador=trim(fgets(STDIN));
             $pos=retornaPrimerVictoria($coleccionPartidas,$nnJugador);
             if($pos=-1){
-                echo "el jugador ".$nnJugador." no gano ninguna partida";
+                echo "el jugador ".$nnJugador." no gano ninguna partida\n";
             }
             else{
                 mostrarPartida($coleccionPartidas,$pos);
             }
             ;break;
         case 5:
-            echo "Ingrese el nombre del jugador: ";
+            echo "Ingrese el nombre del jugador: \n";
             $nnJugador=trim(fgets(STDIN));
             $resumen=retornaResumen($coleccionPartidas,$nnJugador);
             mostrarResumen($resumen);
             ;break;
         case 6:;break;
         case 7:
-            echo "Ingrese una nueva palabra: ";
+            echo "Ingrese una nueva palabra: \n";
             $palabraNueva=leerPalabra5Letras();
             while(pertenece($coleccionPalabras,$palabraNueva)){
-                echo "La palabra ya existe en Wordix, intente con otra: ";
+                echo "La palabra ya existe en Wordix, intente con otra: \n";
                 $palabraNueva=leerPalabra5Letras();
             }
             $coleccionPalabras=agregarPalabra($coleccionPalabras,$palabraNueva);
