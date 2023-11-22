@@ -201,7 +201,7 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
 function mostrarResumen($resumen){
     $cantidadPartidas=$resumen["partidas"];
     $cantidadVictorias=$resumen["victorias"];
-    $porcentajeVictorias=($cantidadVictorias*100)/$cantidadPartidas;
+    $porcentajeVictorias=round(($cantidadVictorias*100)/$cantidadPartidas);
     echo "Jugador: ".$resumen["jugador"];
     echo "Partidas: ".$resumen["partidas"];
     echo "Puntaje total: ".$resumen["puntaje"];
