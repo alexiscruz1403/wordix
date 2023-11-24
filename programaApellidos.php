@@ -70,7 +70,7 @@ function seleccionarOpcion(){
     echo "2. Jugar Wordix con una palabra aleatoria\n";
     echo "3. Mostrar una partida\n";
     echo "4. Mostrar la primer partida ganadora\n";
-    echo "5. Mostrar resumern de jugador\n";
+    echo "5. Mostrar resumen de jugador\n";
     echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
     echo "7. Agregar una palabra de 5 letras a wordix\n";
     echo "8. Salir\n";
@@ -79,7 +79,7 @@ function seleccionarOpcion(){
     return $opcion;
 }
 
-/**funcion que muestra los datos de una partida solicitada
+/** funcion que muestra los datos de una partida solicitada
  * @param array $coleccionPartidas
  * @param int $numeroPartida
  */
@@ -93,14 +93,14 @@ function mostrarPartida($coleccionPartidas,$numeroPartida){
         echo "Intento: No adivino la palabra \n";
     }
     else{
-        echo "Intento: Adivino la palabra en el ".$coleccionPartidas[$numeroPartida]["intentos"]."° "."\n";
+        echo "Intento: Adivino la palabra en el ".$coleccionPartidas[$numeroPartida]["intentos"]."° intento"."\n";
     }
     echo "**********************************\n";
 }
 
 /** funcion que agrega una nueva palabra a la coleccion de palabras a adivinar
  * @param  array $coleccionPalabras
- * @param String $palabraNueva
+ * @param string $palabraNueva
  * @return array
  */
 function agregarPalabra($coleccionPalabras,$palabraNueva){
@@ -132,7 +132,7 @@ function retornaPrimerVictoria($coleccionPartidas,$nombreJugador){
 
 /** funcion que devuelve el resumen de un jugador de una partidas
  * @param array $coleccionPartidas
- * @param String $nombre
+ * @param string $nombre
  * @return array
  */
 function retornaResumen($coleccionPartidas,$nombreJugador){
@@ -192,15 +192,6 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
     $resumen["intento4"]=$contadorIntento4;
     $resumen["intento5"]=$contadorIntento5;
     $resumen["intento6"]=$contadorIntento6;
-    $resumen["partidas"]=$contadorPartidas;
-    $resumen["puntaje"]=$acumuladorPuntaje;
-    $resumen["victorias"]=$contadorVictorias;
-    $resumen["intento1"]=$contadorIntento1;
-    $resumen["intento2"]=$contadorIntento2;
-    $resumen["intento3"]=$contadorIntento3;
-    $resumen["intento4"]=$contadorIntento4;
-    $resumen["intento5"]=$contadorIntento5;
-    $resumen["intento6"]=$contadorIntento6;
     return $resumen;
 }
 
@@ -208,29 +199,31 @@ function retornaResumen($coleccionPartidas,$nombreJugador){
  * @param array $resumen
  */
 function mostrarResumen($resumen){
+    echo "**********************************\n";
     $cantidadPartidas=$resumen["partidas"];
     $cantidadVictorias=$resumen["victorias"];
     $porcentajeVictorias=round(($cantidadVictorias*100)/$cantidadPartidas);
-    echo "Jugador: ".$resumen["jugador"];
-    echo "Partidas: ".$resumen["partidas"];
-    echo "Puntaje total: ".$resumen["puntaje"];
-    echo "Victorias: ".$resumen["victorias"];
-    echo "Porcentaje victorias: ".$porcentajeVictorias;
-    echo "Intento 1: ".$resumen["intentos1"];
-    echo "Intento 2: ".$resumen["intentos2"];
-    echo "Intento 3: ".$resumen["intentos3"];
-    echo "Intento 4: ".$resumen["intentos4"];
-    echo "Intento 5: ".$resumen["intentos5"];
-    echo "Intento 6: ".$resumen["intentos6"];
+    echo "Jugador: ".$resumen["jugador"]."\n";
+    echo "Partidas: ".$resumen["partidas"]."\n";
+    echo "Puntaje total: ".$resumen["puntaje"]."\n";
+    echo "Victorias: ".$resumen["victorias"]."\n";
+    echo "Porcentaje victorias: ".$porcentajeVictorias."\n";
+    echo "Adivinadas:\n";
+    echo "  Intento 1: ".$resumen["intento1"]."\n";
+    echo "  Intento 2: ".$resumen["intento2"]."\n";
+    echo "  Intento 3: ".$resumen["intento3"]."\n";
+    echo "  Intento 4: ".$resumen["intento4"]."\n";
+    echo "  Intento 5: ".$resumen["intento5"]."\n";
+    echo "  Intento 6: ".$resumen["intento6"]."\n";
+    echo "**********************************\n";
 }
 
 /** funcion que verifica el nombre del jugador
- * @return String
+ * @return string
  */
 function solicitarJugador(){
-    /* String $nombre
-       boolean $esLetra
-    */
+    // String $nombre
+    //   boolean $esLetra
     echo "Ingrese su nombre: ";
     $nombre=trim(fgets(STDIN));
     $esLetra=ctype_alpha($nombre[0]);
@@ -315,8 +308,8 @@ function cmp($partida1,$partida2){
 /*array $coleccionPalabras
   array $coleccionPartidas
   array $resumen
-  String $nombre
-  String palabraNueva
+  string $nombre
+  string palabraNueva
   int $numeroPalabra
   int $cantidadPalabras
   int $cantidadPartidas
@@ -338,7 +331,7 @@ do{
         case 1:
             echo "Ingrese su nombre: ";
             $nombre=trim(fgets(STDIN));
-            echo "Ingrese el numero de la Palabra Wordix: ";
+            echo "Ingrese el numero de la Palabra Wordix(entre 1 y ".$cantidadPalabras."): ";
             $numeroPalabra=solicitarNumeroEntre(1,$cantidadPalabras);
             $palabraWordix=$coleccionPalabras[$numeroPalabra-1];
             while(yaJugo($coleccionPartidas,$palabraWordix,$nombre)){
@@ -364,18 +357,18 @@ do{
             mostrarPartida($coleccionPartidas,$numeroPartida-1);
             break;
         case 4:
-            echo "ingrese el nombre de un jugador \n";
+            echo "Ingrese el nombre de un jugador: ";
             $nnJugador=trim(fgets(STDIN));
             $pos=retornaPrimerVictoria($coleccionPartidas,$nnJugador);
             if($pos==-1){
-                echo "el jugador ".$nnJugador." no gano ninguna partida\n";
+                echo "El jugador ".$nnJugador." no gano ninguna partida\n";
             }
             else{
                 mostrarPartida($coleccionPartidas,$pos);
             }
             ;break;
         case 5:
-            echo "Ingrese el nombre del jugador: \n";
+            echo "Ingrese el nombre del jugador: ";
             $nnJugador=trim(fgets(STDIN));
             $resumen=retornaResumen($coleccionPartidas,$nnJugador);
             mostrarResumen($resumen);
@@ -385,7 +378,6 @@ do{
             print_r($coleccionPartidas);
             break;
         case 7:
-            echo "Ingrese una nueva palabra: ";
             $palabraNueva=leerPalabra5Letras();
             while(pertenece($coleccionPalabras,$palabraNueva)){
                 echo "La palabra ya existe en Wordix, intente con otra: \n";

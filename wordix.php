@@ -124,7 +124,7 @@ function escribirSegunEstado($texto, $estado)
 
 /**
  * Funcion que escribe un mensaje de bienvenida al usuario
- * @param String $usuario
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -138,7 +138,7 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * Funcion que recibe una cadena de caracteres y verifica si todos ellos son letras del alfabeto
- * @param String $cadena
+ * @param string $cadena
  * @return boolean
  */
 function esPalabra($cadena)
@@ -155,7 +155,7 @@ function esPalabra($cadena)
 }
 
 /** funcion que determina si es valida una palabra ingresada por el usuario
- *  @return String
+ *  @return string
  */
 function leerPalabra5Letras()
 {
@@ -407,7 +407,8 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
-        echo "Seguí Jugando Wordix, la próxima será! ";
+        echo "Seguí Jugando Wordix, la próxima será!\n ";
+        echo "La palabra era ".$palabraWordix;
     }
 
     $partida = [
