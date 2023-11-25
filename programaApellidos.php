@@ -7,6 +7,7 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /*Montesino Lautaro FAI-3318 TUDW lautaro.montesino@est.fi.uncoma.edu.ar lautyMonte*/
+/*Cruz Jesus Ramon Alexis FAI-4682 TUDW jr.alexis.cruz.2003@gmail.com alexiscruz1403 */
 /* ****COMPLETAR***** */
 
 
