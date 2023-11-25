@@ -372,8 +372,12 @@ do{
             echo "Ingrese el nombre del jugador: ";
             $nnJugador=trim(fgets(STDIN));
             $resumen=retornaResumen($coleccionPartidas,$nnJugador);
-            mostrarResumen($resumen);
-            ;break;
+            if($resumen["partidas"]==0){
+                echo "ese jugador nunca jugo una partida\n";
+            }
+            else{
+                mostrarResumen($resumen);
+            };break;
         case 6:
             usort($coleccionPartidas,'cmp');
             print_r($coleccionPartidas);
