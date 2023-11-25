@@ -376,7 +376,7 @@ do{
             if($resumen["partidas"]==0){
                 echo "ese jugador nunca jugo una partida\n";
             }
-            else{
+            else{ 
                 mostrarResumen($resumen);
             };break;
         case 6:
