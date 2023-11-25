@@ -309,7 +309,7 @@ function cmp($partida1,$partida2){
 //Declaración de variables:
 /*array $coleccionPalabras
   array $coleccionPartidas
-  array $resumen
+  array $resumenJugador
   string $nombre
   string palabraNueva
   int $numeroPalabra
@@ -321,6 +321,7 @@ function cmp($partida1,$partida2){
 //Inicialización de variables:
 $coleccionPalabras=cargarColeccionPalabras();
 $coleccionPartidas=cargarPartidas();
+$resumenJugador=[];
 //Proceso:
 
 //print_r($partida);
@@ -372,12 +373,12 @@ do{
         case 5:
             echo "Ingrese el nombre del jugador: ";
             $nnJugador=trim(fgets(STDIN));
-            $resumen=retornaResumen($coleccionPartidas,$nnJugador);
-            if($resumen["partidas"]==0){
+            $resumenJugador=retornaResumen($coleccionPartidas,$nnJugador);
+            if($resumenJugador["partidas"]==0){
                 echo "ese jugador nunca jugo una partida\n";
             }
             else{ 
-                mostrarResumen($resumen);
+                mostrarResumen($resumenJugador);
             };break;
         case 6:
             usort($coleccionPartidas,'cmp');
