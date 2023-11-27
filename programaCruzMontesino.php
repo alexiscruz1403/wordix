@@ -26,7 +26,7 @@ function cargarColeccionPalabras()
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         /* Agregar 5 palabras más */
-        "GAFAS","COLAS","CARAS","SALAS","MANTAS"
+        "GAFAS","COLAS","CARAS","SALAS","MANTA"
     ];
 
     return ($coleccionPalabras);
@@ -209,7 +209,7 @@ function mostrarResumen($resumen){
     echo "Partidas: ".$resumen["partidas"]."\n";
     echo "Puntaje total: ".$resumen["puntaje"]."\n";
     echo "Victorias: ".$resumen["victorias"]."\n";
-    echo "Porcentaje victorias: ".$porcentajeVictorias."\n";
+    echo "Porcentaje victorias: ".$porcentajeVictorias."%\n";
     echo "Adivinadas:\n";
     echo "  Intento 1: ".$resumen["intento1"]."\n";
     echo "  Intento 2: ".$resumen["intento2"]."\n";
@@ -333,7 +333,7 @@ do{
     switch ($opcion) {
         case 1:
             echo "Ingrese su nombre: ";
-            $nombre=trim(fgets(STDIN));
+            $nombre=solicitarJugador();
             echo "Ingrese el numero de la Palabra Wordix(entre 1 y ".$cantidadPalabras."): ";
             $numeroPalabra=solicitarNumeroEntre(1,$cantidadPalabras);
             $palabraWordix=$coleccionPalabras[$numeroPalabra-1];
